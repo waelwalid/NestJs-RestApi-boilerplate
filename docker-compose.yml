@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+  gateway_app:
+      container_name: gateway_app
+      build:
+        context: .
+        dockerfile: ./Dockerfile
+      volumes:
+        - './:/var/www/app'
+        - /var/www/app/node_modules/
+      depends_on:
+        - mongodb-musala
+      ports:
+            - 3000:3000
+            - 9229:9229
+      networks:
+        playground-network:
+          ipv4_address: 172.16.238.2
+      restart: unless-stopped
+      command: >
+            bash -c "npm install && npm run build && npm run start:dev"
+
+  mongodb-musala:
+    image: mongo
+    container_name: mongodb-musala
+    ports:
+    - 27017:27017
+    restart: unless-stopped
+    volumes:
+      - ./docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      playground-network:
+        ipv4_address: 172.16.238.3
+        
+networks:
+  playground-network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.238.0/24
+
+
+        
