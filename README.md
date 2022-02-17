@@ -12,7 +12,7 @@ This is a NestJs repo for creating Rest API of Main gateway and nested devices
 - Clone the repo
 - Install the dependencies and devDependencies and start the server.
 ```sh
-cd gateway
+cd <PROJECT_PATH>
 npm i 
 docker-compose up
 ```
