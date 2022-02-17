@@ -26,9 +26,6 @@ It will be running on
 - Swagger API Docs : http://172.16.238.2:3000/api
 
 
-git remote add origin git@github.com:waelwalid/NestJs-RestApi-boilerplate.git
-git branch -M main
-git push -u origin main
 
 
 
